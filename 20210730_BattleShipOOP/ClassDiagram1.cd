@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_20210730_BattleShipOOP.GameField">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAQAAAAAAAAAAIAAAAAAAAAAgA=</HashCode>
+      <FileName>GameField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.UI">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.Player">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAiAAAACAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.Bot">
+    <Position X="11.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.SingleDeckShip">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SingleDeckShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.DoubleDeckShip">
+    <Position X="0.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAIIAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DoubleDeckShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.ThreeDeckShip">
+    <Position X="0.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ThreeDeckShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.FourDeckShip">
+    <Position X="0.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>FourDeckShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.Cell">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.EmptyCell">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EmptyCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.MissCell">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MissCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.Ship">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_20210730_BattleShipOOP.Game">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
