@@ -13,22 +13,16 @@ namespace _20210730_BattleShipOOP
             _enemyField = enemyField;
         }
 
-        public override void GetShip(int deckCount, int x, int y, bool orientation)
+        public override void SetShip(int deckCount)
         {
 
             //if (_userField.IsFreePlace(x,y, deckCount, orientation))
             //{
             //    _userField.AddShip(ship);
             //}
-            _userField.AddShip
             //return ship;
         }
 
-        public void SetShip(ParametrShip ship)
-        {
-            ship = 
-            
-        }
 
         public override Coordinate GetShot()
         {

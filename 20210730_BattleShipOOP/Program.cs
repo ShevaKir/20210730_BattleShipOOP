@@ -10,8 +10,8 @@ namespace _20210730_BattleShipOOP
     {
         static void Main(string[] args)
         {
-            FourDeckShip ship = new FourDeckShip(0, 0);
-
+            Game game = new Game();
+            game.Run();
         }
     }
 }

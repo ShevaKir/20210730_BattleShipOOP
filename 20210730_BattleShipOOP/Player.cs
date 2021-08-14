@@ -10,8 +10,8 @@ namespace _20210730_BattleShipOOP
         protected GameField _enemyField;
         protected GameField _userField;
 
-        public abstract Ship GetShip(int deckCount);
+        public abstract void SetShip(int deckCount);
 
-        public abstract Coordinate GetShot(/*Представление игрового поля на основе которого будет осуществляется выстрел*/); 
+        public abstract Coordinate GetShot(); 
     }
 }

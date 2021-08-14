@@ -7,15 +7,22 @@ namespace _20210730_BattleShipOOP
 {
     class Bot : Player
     {
+        private int _countShip;
+
         public Bot(GameField userField, GameField enemyField)
         {
             _userField = userField;
             _enemyField = enemyField;
         }
 
-        public override ParametrShip GetShip(int deckCount, int x, int y, bool orientation)
+        public override void SetShip(int deckCount)
         {
-            throw new NotImplementedException();
+            ParametrShip ship = UI.GetRandomShip(deckCount);
+            
+            if(_enemyField.IsFreePlace(ship))
+            {
+                _enemyField.AddShip(ship);
+            }
         }
 
         public override Coordinate GetShot()
