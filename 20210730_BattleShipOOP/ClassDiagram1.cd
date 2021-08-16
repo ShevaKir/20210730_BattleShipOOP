@@ -3,28 +3,28 @@
   <Class Name="_20210730_BattleShipOOP.GameField">
     <Position X="7.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAQAAAAAAAAAAIAAAAAAAAAAgA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAABAAIQAAAAAAAAAAIAAAAAIAAQAgA=</HashCode>
       <FileName>GameField.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="_20210730_BattleShipOOP.UI">
     <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAwAAAAAAAA=</HashCode>
       <FileName>UI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="_20210730_BattleShipOOP.Player">
     <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAiAAAACAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgACAACAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="_20210730_BattleShipOOP.Bot">
     <Position X="11.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Bot.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,7 +66,7 @@
   <Class Name="_20210730_BattleShipOOP.EmptyCell">
     <Position X="2.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EmptyCell.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -80,14 +80,14 @@
   <Class Name="_20210730_BattleShipOOP.Ship">
     <Position X="0.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ship.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="_20210730_BattleShipOOP.Game">
-    <Position X="9.25" Y="3" Width="1.5" />
+    <Position X="7.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAAAAAACAAAEAAAAAAAAAACAAAAAAI=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>

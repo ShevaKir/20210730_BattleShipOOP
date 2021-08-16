@@ -9,20 +9,23 @@ namespace _20210730_BattleShipOOP
     {
         private User _player;
         private Bot _bot;
+        private GameField _userField;
+        private GameField _botField;
 
         public Game()
         {
-            GameField userField = new GameField();
-            GameField botField = new GameField();
+            _userField = new GameField();
+            _botField = new GameField();
 
-            _player = new User(userField, botField);
-            _bot = new Bot(botField, userField);
+            _player = new User(_userField, _botField);
+            _bot = new Bot(_botField, _userField);
 
         }
 
         public void Run()
         {
-            _bot.SetShip(4);
+            _bot.SetShip(1);
+            UI.ShowField(_userField);
         }
 
 

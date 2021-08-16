@@ -15,6 +15,15 @@ namespace _20210730_BattleShipOOP
             _cells = new Cell[SIZE, SIZE];
         }
 
+        public Cell[,] Cells
+        {
+            get
+            {
+                return _cells;
+            }
+        }
+
+
         public bool IsFreePlace(ParametrShip ship)
         {
             bool result = false;
@@ -69,6 +78,8 @@ namespace _20210730_BattleShipOOP
                             new SingleDeckShip(sourceShip.coordinate.x, sourceShip.coordinate.y);
 
                     _cells[singleShip.Coordinate1.x, singleShip.Coordinate1.y] = singleShip;
+                    FillAroundShip(singleShip);
+
                     break;
                 case 2:
                     DoubleDeckShip doubleShip = new DoubleDeckShip(sourceShip.coordinate.x, 
@@ -97,6 +108,76 @@ namespace _20210730_BattleShipOOP
                 default:
                     break;
             }
+        }
+
+        private void FillAroundShip(Ship sourceShip)
+        {
+            if (sourceShip is SingleDeckShip)
+            {
+                SingleDeckShip ship = (SingleDeckShip)sourceShip;
+
+                for (int i = ship.Coordinate1.x - GetEdgeLeftTop(ship.Coordinate1.x);                   // TODO: Сформировать координаты у корабля
+                        i <= ship.Coordinate1.x + GetEdgeRigthBottop(ship.Coordinate1.x); i++)
+                {
+                    for (int j = ship.Coordinate1.y - GetEdgeLeftTop(ship.Coordinate1.y); 
+                            j <= ship.Coordinate1.y + GetEdgeRigthBottop(ship.Coordinate1.y); j++)
+                    {
+                        if(_cells[i, j] == null)
+                        {
+                            _cells[i, j] = new EmptyCell(i, j);
+                        }
+                    }
+                }
+            }
+            else
+            { 
+                if(sourceShip is DoubleDeckShip)
+                {
+                    DoubleDeckShip ship = (DoubleDeckShip)sourceShip;
+
+
+                }
+                else
+                {
+                    if(sourceShip is ThreeDeckShip)
+                    {
+                        ThreeDeckShip ship = (ThreeDeckShip)sourceShip;
+                    }
+                    else
+                    {
+                        if(sourceShip is FourDeckShip)
+                        {
+                            FourDeckShip ship = (FourDeckShip)sourceShip;
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
+        private int GetEdgeLeftTop(int coordinate)
+        {
+            int edge = 1;
+
+            if(coordinate == 0)
+            {
+                edge = 0;
+            }
+
+            return edge;
+        }
+
+        private int GetEdgeRigthBottop(int coordinate)
+        {
+            int edge = 1;
+
+            if (coordinate == SIZE - 1)
+            {
+                edge = 0;
+            }
+
+            return edge;
         }
 
     }

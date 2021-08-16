@@ -27,6 +27,27 @@ namespace _20210730_BattleShipOOP
 
             return ship;
         }
+
+        public static void ShowField(GameField field)
+        {
+            for (int i = 0; i < field.Cells.GetLength(0); i++)
+            {
+                for (int j = 0; j < field.Cells.GetLength(1); j++)
+                {
+                    if(field.Cells[i, j] != null)
+                    {
+                        Console.Write("{0} ", field.Cells[i, j]);
+                    }
+                    else
+                    {
+                        Console.Write("- ");
+                    }
+                    
+                }
+                Console.WriteLine();
+            }
+        }
+
         //public Coordinate GetCoordinate()
         //{
         //    ConsoleKey key = Console.ReadKey(true).Key;

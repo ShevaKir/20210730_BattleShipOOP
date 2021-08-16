@@ -8,6 +8,7 @@ namespace _20210730_BattleShipOOP
     class Bot : Player
     {
         private int _countShip;
+        private ParametrShip _ship;
 
         public Bot(GameField userField, GameField enemyField)
         {
@@ -17,12 +18,11 @@ namespace _20210730_BattleShipOOP
 
         public override void SetShip(int deckCount)
         {
-            ParametrShip ship = UI.GetRandomShip(deckCount);
-            
-            if(_enemyField.IsFreePlace(ship))
+            do
             {
-                _enemyField.AddShip(ship);
-            }
+                _ship = RandomShip.GetRandomShip(deckCount);  
+            } while (!_enemyField.IsFreePlace(_ship));
+            _enemyField.AddShip(_ship);
         }
 
         public override Coordinate GetShot()

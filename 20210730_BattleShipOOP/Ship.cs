@@ -12,5 +12,11 @@ namespace _20210730_BattleShipOOP
         {
             _coordinate1.state = StateCell.Ship;
         }
+
+        public override string ToString()
+        {
+            return String.Format("@");
+        }
+
     }
 }
