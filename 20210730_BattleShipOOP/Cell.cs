@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    class Cell
+    abstract class Cell
     {
         protected Coordinate _coordinate1;
         
@@ -15,17 +15,6 @@ namespace _20210730_BattleShipOOP
             _coordinate1.y = y;
         }
 
-        public Coordinate Coordinate1
-        {
-            get
-            {
-                return _coordinate1;
-            }
-        }
-
-        public void SetState(StateCell state)
-        {
-            _coordinate1.state = state;
-        }
+        abstract public Coordinate Coordinate1 { get; }
     }
 }

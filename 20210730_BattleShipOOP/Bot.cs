@@ -5,10 +5,15 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    class Bot : Player
+    class Bot : Player, IWin
     {
-        private int _countShip;
-        private ParametrShip _ship;
+        public string Win
+        {
+            get
+            {
+                return "Victory Bot";
+            }
+        }
 
         public Bot(GameField userField, GameField enemyField)
         {
@@ -20,14 +25,19 @@ namespace _20210730_BattleShipOOP
         {
             do
             {
-                _ship = RandomShip.GetRandomShip(deckCount);  
-            } while (!_enemyField.IsFreePlace(_ship));
-            _enemyField.AddShip(_ship);
+                _ship = RandomParametr.GetRandomShip(deckCount);  
+            } while (!_userField.IsFreePlace(_ship));
+            _userField.AddShip(_ship);
         }
 
         public override Coordinate GetShot()
         {
-            throw new NotImplementedException();
+            do
+            {
+                _shot = RandomParametr.GetRandomShot();
+            } while (!_enemyField.IsFreeCell(_shot));
+
+            return _shot;
         }
     }
 }

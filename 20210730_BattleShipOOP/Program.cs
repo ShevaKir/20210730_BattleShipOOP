@@ -10,8 +10,11 @@ namespace _20210730_BattleShipOOP
     {
         static void Main(string[] args)
         {
+           
             Game game = new Game();
             game.Run();
+
+            Console.ReadKey();
         }
     }
 }

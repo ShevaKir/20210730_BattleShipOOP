@@ -9,12 +9,21 @@ namespace _20210730_BattleShipOOP
     {
         private bool _orientation;          // true - Horizontal , false - Vertical
         protected Coordinate _coordinate2;
+        private StateDeck _deck2;
 
         public DoubleDeckShip(int x, int y, bool orientation = true)
             :base(x, y)
         {
-            _coordinate2.state = StateCell.Ship;
+            _deck2 = StateDeck.Intact;
             _orientation = orientation;
+            if (_orientation)
+            {
+                _coordFullShip = new Coordinate[3, 4];
+            }
+            else
+            {
+                _coordFullShip = new Coordinate[4, 3];
+            }
             RotateCoordinateShip(orientation);
         }
 
@@ -24,6 +33,41 @@ namespace _20210730_BattleShipOOP
             {
                 return _coordinate2;
             }
+        }
+
+        public StateDeck Deck2
+        {
+            get
+            {
+                return _deck2;
+            }
+            set
+            {
+                _deck2 = value;
+            }
+        }
+
+        public override void SetDamage(int x, int y)
+        {
+            
+            if (_coordinate2.x == x && _coordinate2.y == y)
+            {
+                _deck2 = StateDeck.Damaged;
+            }
+            else 
+            {
+                base.SetDamage(x, y);
+            }
+        }
+
+        public override bool IsAllDamageDeck()
+        {
+            if(base.IsAllDamageDeck())
+            {
+                return _deck2 == StateDeck.Damaged;
+            }
+
+            return false;  
         }
 
         protected virtual void RotateCoordinateShip(bool orientation)

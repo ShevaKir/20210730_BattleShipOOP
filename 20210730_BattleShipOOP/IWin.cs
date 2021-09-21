@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace _20210730_BattleShipOOP
 {
-    enum StateCell
+    interface IWin
     {
-        Empty,
-        Miss,
-        Ship,
-        Hit,
-        Kill
+        string Win { get; }
+
     }
 }

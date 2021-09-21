@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _20210730_BattleShipOOP
 {
-    class RandomShip
+    class RandomParametr
     {
         public static Random random = new Random();
 
@@ -27,6 +27,16 @@ namespace _20210730_BattleShipOOP
             ship.countDeck = deckCount;
 
             return ship;
+        }
+
+        public static Coordinate GetRandomShot()
+        {
+            Coordinate shot = new Coordinate();
+
+            shot.x = random.Next(0, 10);
+            shot.y = random.Next(0, 10);
+
+            return shot;
         }
     }
 }

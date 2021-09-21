@@ -5,11 +5,12 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    class MissCell : Cell
+    class HitCell : Cell
     {
-        public MissCell(int x, int y)
-            : base(x, y)
+        public HitCell(int x, int y)
+            :base(x, y)
         {
+
         }
 
         public override Coordinate Coordinate1
@@ -22,7 +23,7 @@ namespace _20210730_BattleShipOOP
 
         public override string ToString()
         {
-            return String.Format("Х");
+            return String.Format("+");
         }
     }
 }
