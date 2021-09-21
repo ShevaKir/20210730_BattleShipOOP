@@ -7,12 +7,21 @@ namespace _20210730_BattleShipOOP
 {
     class FourDeckShip : ThreeDeckShip
     {
-        private Coordinate _coordinate4;
+        protected Coordinate _coordinate4;
+        private StateDeck _deck4;
 
         public FourDeckShip(int x, int y, bool orientation = true)
             : base(x, y, orientation)
         {
-            _coordinate4.state = StateCell.Ship;
+            _deck4 = StateDeck.Intact;
+            if (orientation)
+            {
+                _coordFullShip = new Coordinate[3, 6];
+            }
+            else
+            {
+                _coordFullShip = new Coordinate[6, 3];
+            }
         }
 
         public Coordinate Coordinate4
@@ -21,6 +30,41 @@ namespace _20210730_BattleShipOOP
             {
                 return _coordinate4;
             }
+        }
+
+        public StateDeck Deck4
+        {
+            get
+            {
+                return _deck4;
+            }
+            set
+            {
+                _deck4 = value;
+            }
+        }
+
+        public override void SetDamage(int x, int y)
+        {
+
+            if (_coordinate4.x == x && _coordinate4.y == y)
+            {
+                _deck4 = StateDeck.Damaged;
+            }
+            else
+            {
+                base.SetDamage(x, y);
+            }
+        }
+
+        public override bool IsAllDamageDeck()
+        {
+            if(base.IsAllDamageDeck())
+            {
+                return _deck4 == StateDeck.Damaged;
+            }
+
+            return false;
         }
 
         protected override void RotateCoordinateShip(bool orientation)
