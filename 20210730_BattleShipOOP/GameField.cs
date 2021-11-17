@@ -7,10 +7,13 @@ namespace _20210730_BattleShipOOP
 {
     class GameField : IShowField
     {
+        private const int SHIP_COUNT = 10;
         private const int SIZE = 10;
         private Cell[,] _cells;
         private int _countShip;
-            
+        private ShipCounting _countShipKilling;
+        
+
         public GameField()
         {
             _cells = new Cell[SIZE, SIZE];
@@ -36,7 +39,27 @@ namespace _20210730_BattleShipOOP
         {
             get
             {
+                return SHIP_COUNT;
+            }
+        }
+
+        public int ShipOnTheField
+        {
+            get
+            {
                 return _countShip;
+            }
+        }
+
+        public event ShipCounting CountKillShip
+        {
+            add
+            {
+                _countShipKilling += value;
+            }
+            remove
+            {
+                _countShipKilling -= value;
             }
         }
 
@@ -180,7 +203,7 @@ namespace _20210730_BattleShipOOP
         }
 
 
-        public void SetShot(Coordinate shot)
+        public void AddShot(Coordinate shot)
         {
 
             if (_cells[shot.x, shot.y] is Ship ship)
@@ -202,6 +225,11 @@ namespace _20210730_BattleShipOOP
 
         public void KillShip(Ship ship)
         {
+            if(_countShipKilling != null)
+            {
+                _countShipKilling(this, new ShipKillingEventArgs(SHIP_COUNT - _countShip + 1));
+            }
+
             for (int i = 0; i < ship.SizeWidth; i++)
             {
                 for (int j = 0; j < ship.SizeHeigh; j++)

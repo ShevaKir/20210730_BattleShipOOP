@@ -21,23 +21,28 @@ namespace _20210730_BattleShipOOP
             _enemyField = enemyField;
         }
 
-        public override void SetShip(int deckCount)
+        public override bool SetShip(ParametrShip ship)
         {
-            do
+            bool freePlace = _userField.IsFreePlace(ship);
+
+            if (freePlace)
             {
-                _ship = RandomParametr.GetRandomShip(deckCount);  
-            } while (!_userField.IsFreePlace(_ship));
-            _userField.AddShip(_ship);
+                _userField.AddShip(ship);
+            }
+
+            return freePlace;
         }
 
-        public override Coordinate GetShot()
+        public override bool SetShot(Coordinate shot)
         {
-            do
-            {
-                _shot = RandomParametr.GetRandomShot();
-            } while (!_enemyField.IsFreeCell(_shot));
+            bool free = _enemyField.IsFreeCell(shot);
 
-            return _shot;
+            if (free)
+            {
+                _enemyField.AddShot(shot);
+            }
+
+            return free;
         }
     }
 }

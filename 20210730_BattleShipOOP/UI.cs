@@ -95,9 +95,10 @@ namespace _20210730_BattleShipOOP
             Console.Write("X = {0} , Y = {1} ", shot.x, shot.y);
         }
 
-        public static ParametrShip GetCoordinate(ParametrShip parametrShip, int deckShip)
+        public static void GetCoordinate(int deckShip, ref ParametrShip parametrShip)
         {
             parametrShip.countDeck = deckShip;
+
             ConsoleKey key;
 
             do
@@ -121,20 +122,21 @@ namespace _20210730_BattleShipOOP
                         parametrShip.orientation = !parametrShip.orientation;
                         break;
                 }
+
                 ShowParametr(parametrShip, 0, 26);
+
             } while (key != ConsoleKey.Enter);
             
-
-            return parametrShip;
         }
 
-        public static Coordinate GetCoordinateShot(Coordinate shot)
-        {
+        public static Coordinate GetCoordinateShot(ref Coordinate shot)
+        {         
             ConsoleKey key;
 
             do
             {
                 key = Console.ReadKey(true).Key;
+
                 switch (key)
                 {
                     case ConsoleKey.UpArrow:
@@ -150,14 +152,16 @@ namespace _20210730_BattleShipOOP
                         shot.y++;
                         break;
                 }
+
                 ShowCoordinate(shot, 0, 25);
+
             } while (key != ConsoleKey.Enter);
 
             return shot;
         }
 
 
-        public static void OutOfField(Exception ex)
+        public static void OutOfField(OutOfFieldException ex)
         {
             Console.SetCursorPosition(0, 22);
             Console.Write("OutOfField: {0}", ex.StackTrace);
@@ -172,10 +176,13 @@ namespace _20210730_BattleShipOOP
                 {
                     Console.Write(" ");
                 }
-            }
-
-            
+            }   
         }
 
+        public static void CounterKillShip(object sender, ShipKillingEventArgs e)
+        {
+            Console.SetCursorPosition(15, 27);
+            Console.WriteLine("Kill ship: {0}", e.KillingShip);
+        }
     }
 }

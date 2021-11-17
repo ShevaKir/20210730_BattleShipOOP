@@ -9,11 +9,9 @@ namespace _20210730_BattleShipOOP
     {
         protected GameField _enemyField;
         protected GameField _userField;
-        protected ParametrShip _ship;
-        protected Coordinate _shot;
 
-        public abstract void SetShip(int deckCount);
+        public abstract bool SetShip(ParametrShip ship);
 
-        public abstract Coordinate GetShot(); 
+        public abstract bool SetShot(Coordinate shot); 
     }
 }

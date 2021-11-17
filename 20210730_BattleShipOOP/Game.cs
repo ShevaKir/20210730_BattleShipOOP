@@ -7,11 +7,14 @@ namespace _20210730_BattleShipOOP
 {
     class Game
     {
-        private const int SHIP_COUNT = 10;
+        
         private User _player;
         private Bot _bot;
         private GameField _userField;
         private GameField _botField;
+        private bool _completed;
+        private ParametrShip _ship;
+        private Coordinate _shot;
 
         public Game()
         {
@@ -21,35 +24,78 @@ namespace _20210730_BattleShipOOP
             _player = new User(_userField, _botField);
             _bot = new Bot(_botField, _userField);
         }
-
+        
         public void Run()
         {
-            do
-            {
-                _player.SetShip(GetDeck(_userField.CountShip));
-                _bot.SetShip(GetDeck(_botField.CountShip));
-                UI.ShowField(_userField, 0, 0);
-                UI.ShowField(_botField, 60, 0);
-            } while (_userField.CountShip < SHIP_COUNT);
+            AddAllShipOnField();
 
-            do
-            {
-                _botField.SetShot(_player.GetShot());
-                _userField.SetShot(_bot.GetShot());
-                UI.ShowField(_userField, 0, 0);
-                UI.ShowField(_botField, 60, 0);
-            } while (_userField.CountShip > 0 && _botField.CountShip > 0);
+            _botField.CountKillShip += UI.CounterKillShip;
 
-            if (_userField.CountShip == 0)
+            Firefight();
+
+            if (_userField.ShipOnTheField == 0)
             {
                 UI.Victory(_bot);
             }
 
-            if (_botField.CountShip == 0)
+            if (_botField.ShipOnTheField == 0)
             {
                 UI.Victory(_player);
             }
 
+        }
+
+        private void Firefight()
+        {
+            do
+            {
+                do
+                {
+                    UI.GetCoordinateShot(ref _shot);
+                    try
+                    {
+                        _completed = _player.SetShot(_shot);
+                    }
+                    catch (OutOfFieldException ex)
+                    {
+
+                        UI.OutOfField(ex);
+                    }
+                    
+                } while (!_completed);
+
+                do
+                {
+                    Coordinate shot = RandomParametr.GetRandomShot();
+                    _completed = _bot.SetShot(shot);
+                } while (!_completed);
+
+                UI.ShowField(_userField, 0, 0);
+                UI.ShowField(_botField, 60, 0);
+
+            } while (_userField.ShipOnTheField > 0 && _botField.ShipOnTheField > 0);
+        }
+
+        private void AddAllShipOnField()
+        {
+            do
+            {
+                do
+                {
+                    UI.GetCoordinate(GetDeck(_userField.ShipOnTheField), ref _ship);
+                    _completed = _player.SetShip(_ship);
+                } while (!_completed);
+
+                do
+                {
+                    ParametrShip ship = RandomParametr.GetRandomShip(GetDeck(_botField.ShipOnTheField));
+                    _completed = _bot.SetShip(ship);
+                } while (!_completed);
+
+                UI.ShowField(_userField, 0, 0);
+                UI.ShowField(_botField, 60, 0);
+
+            } while (_userField.ShipOnTheField < _userField.CountShip);
         }
 
         private int GetDeck(int countShip)

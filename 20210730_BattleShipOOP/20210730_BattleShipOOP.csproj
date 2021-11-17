@@ -43,34 +43,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bot.cs" />
-    <Compile Include="Cell.cs" />
+    <Compile Include="Player\Bot.cs" />
+    <Compile Include="Cells\Cell.cs" />
     <Compile Include="Coordinate.cs" />
-    <Compile Include="DoubleDeckShip.cs" />
-    <Compile Include="EmptyCell.cs" />
-    <Compile Include="FourDeckShip.cs" />
+    <Compile Include="Ship\DoubleDeckShip.cs" />
+    <Compile Include="Cells\EmptyCell.cs" />
+    <Compile Include="Ship\FourDeckShip.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameField.cs" />
     <Compile Include="HitCell.cs" />
     <Compile Include="IShowField.cs" />
     <Compile Include="IWin.cs" />
-    <Compile Include="MissCell.cs" />
+    <Compile Include="KillShipCounter.cs" />
+    <Compile Include="Cells\MissCell.cs" />
     <Compile Include="OutOfFieldException.cs" />
     <Compile Include="ParametrShip.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomParametr.cs" />
-    <Compile Include="Ship.cs" />
-    <Compile Include="SingleDeckShip.cs" />
+    <Compile Include="Ship\Ship.cs" />
+    <Compile Include="ShipKillingEventArgs.cs" />
+    <Compile Include="ShipСounting.cs" />
+    <Compile Include="Ship\SingleDeckShip.cs" />
     <Compile Include="StateDeck.cs" />
-    <Compile Include="ThreeDeckShip.cs" />
+    <Compile Include="Ship\ThreeDeckShip.cs" />
     <Compile Include="UI.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Player\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
