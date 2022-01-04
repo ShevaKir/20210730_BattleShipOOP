@@ -9,5 +9,17 @@ namespace _20210730_BattleShipOOP
     {
         public int x;
         public int y;
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
     }
+
+
 }

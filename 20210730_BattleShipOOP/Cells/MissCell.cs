@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    class MissCell : Cell
+    class MissCell : Cell, IView
     {
         public MissCell(int x, int y)
             : base(x, y)
@@ -19,6 +19,8 @@ namespace _20210730_BattleShipOOP
                 return _coordinate1;
             }
         }
+
+        public GameObject ViewGameObject => GameObject.MissCell;
 
         public override string ToString()
         {

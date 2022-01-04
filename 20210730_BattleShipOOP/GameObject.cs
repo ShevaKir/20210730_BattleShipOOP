@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace _20210730_BattleShipOOP
 {
-    interface IShowField
+    enum GameObject
     {
-        int SizeField { get; }
-
-        IReadOnlyDictionary<Coordinate, Cell> Cells { get; }
+        Ship,
+        HitCell,
+        MissCell
     }
 }

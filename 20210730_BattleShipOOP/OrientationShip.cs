@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace _20210730_BattleShipOOP
 {
-    interface IShowField
+    enum OrientationShip
     {
-        int SizeField { get; }
-
-        IReadOnlyDictionary<Coordinate, Cell> Cells { get; }
+        Vertical,
+        Horizontal
     }
 }

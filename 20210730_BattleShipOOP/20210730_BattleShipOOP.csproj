@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObject.cs" />
+    <Compile Include="IView.cs" />
+    <Compile Include="OrientationShip.cs" />
     <Compile Include="Player\Bot.cs" />
     <Compile Include="Cells\Cell.cs" />
     <Compile Include="Coordinate.cs" />
@@ -51,7 +54,7 @@
     <Compile Include="Ship\FourDeckShip.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameField.cs" />
-    <Compile Include="HitCell.cs" />
+    <Compile Include="Cells\HitCell.cs" />
     <Compile Include="IShowField.cs" />
     <Compile Include="IWin.cs" />
     <Compile Include="KillShipCounter.cs" />

@@ -29,44 +29,58 @@ namespace _20210730_BattleShipOOP
         "─┼─",
         " │",─*/
 
-
-
-        public static void ShowField(IShowField field, int left, int top)
+        public static void ShowGrid(IShowField field, int left, int top)
         {
             for (int i = 0; i < field.SizeField; i++)
             {
                 for (int j = 0; j < field.SizeField; j++)
                 {
-                    Console.SetCursorPosition(left, top);
-                    Console.Write(_cell[0]);
-                    top++;
-                    Console.SetCursorPosition(left, top);
-                    Console.Write(_cell[1].Replace(' ', GetImage(field, i, j)));
-                    top++;
-                    Console.SetCursorPosition(left, top);
-                    Console.Write(_cell[2]);
+                    int strCount = 0;
+                    while (strCount < _cell.Length)
+                    {
+                        Console.SetCursorPosition(left, top++);
+                        Console.Write(_cell[strCount++]);                
+                    }
                     left += SHIFT_LEFT;
-                    top -= SHIFT_TOP;
+                    top -= SHIFT_TOP + 1;
                 }
+                left -= field.SizeField * SHIFT_LEFT;
                 top += SHIFT_TOP;
-                left -= SHIFT_LEFT * field.SizeField;
+            }
+        }
+
+        public static void ShowField(IShowField field, int left, int top)
+        {
+            int leftStart = 2;
+            int topStart = 1;
+            int shiftLeft = 4;
+            int shiftTop = 2;
+
+            foreach (KeyValuePair<Coordinate, Cell> item in field.Cells)
+            {
+                if (!(item.Value is EmptyCell))
+                {
+                    Console.SetCursorPosition(leftStart + item.Key.y * shiftLeft + left, 
+                            topStart + item.Key.x * shiftTop + top);
+                    Console.Write(item.Value);
+                }
             }
 
         }
 
-        public static char GetImage(IShowField field, int i, int j)
+        public static char GetImage(Cell cell)
         {
             char image = IMAGE_EMPHY;
-            
-            if (field[i, j] is Ship)
+
+            if (cell is Ship)
             {
                 image = IMAGE_DECK;
             }
-            if(field[i, j] is MissCell)
+            if (cell is MissCell)
             {
                 image = IMAGE_MISS;
             }
-            if (field[i, j] is HitCell)
+            if (cell is HitCell)
             {
                 image = IMAGE_HIT;
             }
@@ -119,7 +133,14 @@ namespace _20210730_BattleShipOOP
                         parametrShip.coordinate.y++;
                         break;
                     case ConsoleKey.Spacebar:
-                        parametrShip.orientation = !parametrShip.orientation;
+                        if (parametrShip.orientation == OrientationShip.Vertical)
+                        {
+                            parametrShip.orientation = OrientationShip.Horizontal;
+                        }
+                        else
+                        {
+                            parametrShip.orientation = OrientationShip.Vertical;
+                        }
                         break;
                 }
 

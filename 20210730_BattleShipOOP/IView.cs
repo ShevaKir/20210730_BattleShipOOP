@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace _20210730_BattleShipOOP
 {
-    interface IShowField
+    interface IView
     {
-        int SizeField { get; }
-
-        IReadOnlyDictionary<Coordinate, Cell> Cells { get; }
+        GameObject ViewGameObject { get; }
     }
 }

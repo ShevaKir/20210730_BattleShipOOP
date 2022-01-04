@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    abstract class Ship : Cell
+    abstract class Ship : Cell, IView
     {
         protected Coordinate[,] _coordFullShip;
 
@@ -30,6 +30,8 @@ namespace _20210730_BattleShipOOP
         {
             get;
         }
+
+        public GameObject ViewGameObject => GameObject.Ship;
 
         public abstract void SetDamage(int x, int y);
 

@@ -18,11 +18,11 @@ namespace _20210730_BattleShipOOP
             ship.coordinate.y = random.Next(0, 10);
             if (random.Next(0, 2) == 1)
             {
-                ship.orientation = true;
+                ship.orientation = OrientationShip.Horizontal;
             }
             else
             {
-                ship.orientation = false;
+                ship.orientation = OrientationShip.Vertical;
             }
             ship.countDeck = deckCount;
 

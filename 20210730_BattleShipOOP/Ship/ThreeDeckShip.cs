@@ -10,11 +10,11 @@ namespace _20210730_BattleShipOOP
         protected Coordinate _coordinate3;
         private StateDeck _deck3;
 
-        public ThreeDeckShip(int x, int y, bool orientation = true)
+        public ThreeDeckShip(int x, int y, OrientationShip orientation = OrientationShip.Horizontal)
             :base(x, y, orientation)
         {
             _deck3 = StateDeck.Intact;
-            if (orientation)
+            if (orientation == OrientationShip.Horizontal)
             {
                 _coordFullShip = new Coordinate[3, 5];
             }
@@ -68,10 +68,10 @@ namespace _20210730_BattleShipOOP
             return false;
         }
 
-        protected override void RotateCoordinateShip(bool orientation)
+        protected override void RotateCoordinateShip(OrientationShip orientation)
         {
             base.RotateCoordinateShip(orientation);
-            if (orientation)
+            if (orientation == OrientationShip.Horizontal)
             {
                 _coordinate3.x = _coordinate2.x + 1;
                 _coordinate3.y = _coordinate2.y;

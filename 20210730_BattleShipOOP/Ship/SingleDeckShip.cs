@@ -7,7 +7,7 @@ namespace _20210730_BattleShipOOP
 {
     class SingleDeckShip : Ship
     {
-        StateDeck _deck1;
+        private StateDeck _deck1;
 
         public SingleDeckShip(int x, int y)
             : base(x, y)

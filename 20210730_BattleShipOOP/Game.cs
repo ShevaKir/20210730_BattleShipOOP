@@ -27,6 +27,9 @@ namespace _20210730_BattleShipOOP
         
         public void Run()
         {
+            UI.ShowGrid(_userField, 0,0);
+            UI.ShowGrid(_botField, 60, 0);
+
             AddAllShipOnField();
 
             _botField.CountKillShip += UI.CounterKillShip;
@@ -52,15 +55,7 @@ namespace _20210730_BattleShipOOP
                 do
                 {
                     UI.GetCoordinateShot(ref _shot);
-                    try
-                    {
-                        _completed = _player.SetShot(_shot);
-                    }
-                    catch (OutOfFieldException ex)
-                    {
-
-                        UI.OutOfField(ex);
-                    }
+                    _completed = _player.SetShot(_shot);
                     
                 } while (!_completed);
 
@@ -96,7 +91,9 @@ namespace _20210730_BattleShipOOP
                 UI.ShowField(_botField, 60, 0);
 
             } while (_userField.ShipOnTheField < _userField.CountShip);
+            
         }
+        
 
         private int GetDeck(int countShip)
         {

@@ -10,11 +10,11 @@ namespace _20210730_BattleShipOOP
         protected Coordinate _coordinate4;
         private StateDeck _deck4;
 
-        public FourDeckShip(int x, int y, bool orientation = true)
+        public FourDeckShip(int x, int y, OrientationShip orientation = OrientationShip.Horizontal)
             : base(x, y, orientation)
         {
             _deck4 = StateDeck.Intact;
-            if (orientation)
+            if (orientation == OrientationShip.Horizontal)
             {
                 _coordFullShip = new Coordinate[3, 6];
             }
@@ -67,10 +67,10 @@ namespace _20210730_BattleShipOOP
             return false;
         }
 
-        protected override void RotateCoordinateShip(bool orientation)
+        protected override void RotateCoordinateShip(OrientationShip orientation)
         {
             base.RotateCoordinateShip(orientation);
-            if (orientation)
+            if (orientation == OrientationShip.Horizontal)
             {
                 _coordinate4.x = _coordinate3.x + 1;
                 _coordinate4.y = _coordinate3.y;

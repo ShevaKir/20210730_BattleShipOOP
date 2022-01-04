@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 
@@ -9,21 +10,20 @@ namespace _20210730_BattleShipOOP
     {
         private const int SHIP_COUNT = 10;
         private const int SIZE = 10;
-        private Cell[,] _cells;
         private int _countShip;
         private ShipCounting _countShipKilling;
-        
+        private Dictionary<Coordinate, Cell> _cells;
 
         public GameField()
         {
-            _cells = new Cell[SIZE, SIZE];
+            _cells = new Dictionary<Coordinate, Cell>(SHIP_COUNT + 10);
         }
 
-        public Cell this[int xIndex, int yIndex] 
+        public IReadOnlyDictionary<Coordinate, Cell> Cells
         {
             get
             {
-                return _cells[xIndex, yIndex];
+                return _cells;
             }
         }
 
@@ -51,6 +51,8 @@ namespace _20210730_BattleShipOOP
             }
         }
 
+        
+
         public event ShipCounting CountKillShip
         {
             add
@@ -63,53 +65,45 @@ namespace _20210730_BattleShipOOP
             }
         }
 
+        private bool IsNotOutField(ParametrShip ship)
+        {
+            bool result = false;
+
+            LinkedList<Coordinate> coordinates = ship.GetCoordinates();
+
+            if (coordinates.First.Value.x >= 0 && coordinates.First.Value.y >= 0
+                    && coordinates.Last.Value.x < SIZE && coordinates.Last.Value.y < SIZE)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        private bool IsNotOutField(Coordinate coordinate)
+        {
+            return coordinate.x >= 0 && coordinate.y >= 0
+                    && coordinate.x < SIZE && coordinate.y < SIZE;
+        }
+
         public bool IsFreePlace(ParametrShip ship)
         {
             bool result = false;
-            
-            if (ship.coordinate.x >= 0 && ship.coordinate.x < SIZE 
-                    && ship.coordinate.y >= 0 && ship.coordinate.y < SIZE)
+
+            if (IsNotOutField(ship))
             {
-                if (ship.orientation)
+                foreach (Coordinate item in ship.GetCoordinates())
                 {
-                    if (ship.coordinate.x + ship.countDeck <= SIZE)
+                    if (!_cells.ContainsKey(item))
                     {
-                        for (int i = ship.coordinate.x; i < ship.coordinate.x + ship.countDeck; i++)
-                        {
-                            if (_cells[i, ship.coordinate.y] == null)
-                            {
-                                result = true;
-                            }
-                            else
-                            {
-                                result = false;
-                                break;
-                            }
-                        }
+                        result = true;
                     }
-                }
-                else
-                {
-                    if (ship.coordinate.y + ship.countDeck <= SIZE)
+                    else
                     {
-                        for (int i = ship.coordinate.y; i < ship.coordinate.y + ship.countDeck; i++)
-                        {
-                            if (_cells[ship.coordinate.x, i] == null)
-                            {
-                                result = true;
-                            }
-                            else
-                            {
-                                result = false;
-                                break;
-                            }
-                        }
+                        result = false;
+                        break;
                     }
-                }
-            }
-            else
-            {
-                throw new OutOfFieldException("Out of field");
+                }        
             }
 
             return result;
@@ -119,10 +113,23 @@ namespace _20210730_BattleShipOOP
         {
             bool result = false;
 
-            if(!(_cells[coordinate.x, coordinate.y] is HitCell) 
-                    && !(_cells[coordinate.x, coordinate.y] is MissCell))
+            if (IsNotOutField(coordinate))
             {
-                result = true;
+                if (_cells.ContainsKey(coordinate))
+                {
+                    if (!(_cells[coordinate] is MissCell) && !(_cells[coordinate] is HitCell))
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                }
+                else
+                {
+                    result = true;
+                }
             }
 
             return result;
@@ -130,7 +137,6 @@ namespace _20210730_BattleShipOOP
 
         public void AddShip(ParametrShip sourceShip)
         {
-
             switch (sourceShip.countDeck)
             {
                 case 1:
@@ -138,7 +144,8 @@ namespace _20210730_BattleShipOOP
                             new SingleDeckShip(sourceShip.coordinate.x, sourceShip.coordinate.y);
 
                     singleShip.FillAroundShip();
-                    _cells[singleShip.Coordinate1.x, singleShip.Coordinate1.y] = singleShip;
+
+                    _cells.Add(singleShip.Coordinate1, singleShip);
 
                     SetShipToField(singleShip);
                     _countShip++;
@@ -148,8 +155,9 @@ namespace _20210730_BattleShipOOP
                             sourceShip.coordinate.y, sourceShip.orientation);
 
                     doubleShip.FillAroundShip();
-                    _cells[doubleShip.Coordinate1.x, doubleShip.Coordinate1.y] = doubleShip;
-                    _cells[doubleShip.Coordinate2.x, doubleShip.Coordinate2.y] = doubleShip;
+
+                    _cells.Add(doubleShip.Coordinate1, doubleShip);
+                    _cells.Add(doubleShip.Coordinate2, doubleShip);
 
                     SetShipToField(doubleShip);
                     _countShip++;
@@ -158,10 +166,11 @@ namespace _20210730_BattleShipOOP
                     ThreeDeckShip threeShip = new ThreeDeckShip(sourceShip.coordinate.x,
                             sourceShip.coordinate.y, sourceShip.orientation);
 
-                    threeShip.FillAroundShip(); 
-                    _cells[threeShip.Coordinate1.x, threeShip.Coordinate1.y] = threeShip;
-                    _cells[threeShip.Coordinate2.x, threeShip.Coordinate2.y] = threeShip;
-                    _cells[threeShip.Coordinate3.x, threeShip.Coordinate3.y] = threeShip;
+                    threeShip.FillAroundShip();
+
+                    _cells.Add(threeShip.Coordinate1, threeShip);
+                    _cells.Add(threeShip.Coordinate2, threeShip);
+                    _cells.Add(threeShip.Coordinate3, threeShip);
 
                     SetShipToField(threeShip);
                     _countShip++;
@@ -171,10 +180,11 @@ namespace _20210730_BattleShipOOP
                             sourceShip.coordinate.y, sourceShip.orientation);
 
                     fourShip.FillAroundShip();
-                    _cells[fourShip.Coordinate1.x, fourShip.Coordinate1.y] = fourShip;
-                    _cells[fourShip.Coordinate2.x, fourShip.Coordinate2.y] = fourShip;
-                    _cells[fourShip.Coordinate3.x, fourShip.Coordinate3.y] = fourShip;
-                    _cells[fourShip.Coordinate4.x, fourShip.Coordinate4.y] = fourShip;
+
+                    _cells.Add(fourShip.Coordinate1, fourShip);
+                    _cells.Add(fourShip.Coordinate2, fourShip);
+                    _cells.Add(fourShip.Coordinate3, fourShip);
+                    _cells.Add(fourShip.Coordinate4, fourShip);
 
                     SetShipToField(fourShip);
                     _countShip++;
@@ -182,7 +192,6 @@ namespace _20210730_BattleShipOOP
                 default:
                     break;
             }
-            
         }
 
         private void SetShipToField(Ship ship)
@@ -191,13 +200,16 @@ namespace _20210730_BattleShipOOP
             {
                 for (int j = 0; j < ship.SizeHeigh; j++)
                 {
-                    if (ship[i, j].x != -1 && ship[i, j].x != 10
-                            && ship[i, j].y != -1 && ship[i, j].y != 10
-                                && _cells[ship[i, j].x, ship[i, j].y] == null)
+                    if (ship[i, j].x != -1 && ship[i, j].x != SIZE
+                            && ship[i, j].y != -1 && ship[i, j].y != SIZE)
                     {
-                        _cells[ship[i, j].x, ship[i, j].y] =
-                            new EmptyCell(ship[i, j].x, ship[i, j].y);
+                        if (!_cells.ContainsKey(ship[i, j]))
+                        {
+                            _cells.Add(ship[i, j], 
+                                    new EmptyCell(ship[i, j].x, ship[i, j].y));
+                        }
                     }
+                    
                 }
             }
         }
@@ -205,22 +217,27 @@ namespace _20210730_BattleShipOOP
 
         public void AddShot(Coordinate shot)
         {
-
-            if (_cells[shot.x, shot.y] is Ship ship)
+            if (_cells.ContainsKey(shot))
             {
-                ship.SetDamage(shot.x, shot.y);
-                _cells[shot.x, shot.y] = new HitCell(shot.x, shot.y);
-                if(ship.IsAllDamageDeck())
+                if (_cells[shot] is Ship ship)
                 {
-                    KillShip(ship);
-                    _countShip--;
+                    ship.SetDamage(shot.x, shot.y);
+                    _cells[shot] = new HitCell(shot.x, shot.y);
+                    if (ship.IsAllDamageDeck())
+                    {
+                        KillShip(ship);
+                        _countShip--;
+                    }
+                }
+                else
+                {
+                    _cells[shot] = new MissCell(shot.x, shot.y);
                 }
             }
             else
             {
-                _cells[shot.x, shot.y] = new MissCell(shot.x, shot.y);
-            } 
-            
+                _cells.Add(shot, new MissCell(shot.x, shot.y));
+            }                  
         }
 
         public void KillShip(Ship ship)
@@ -234,12 +251,9 @@ namespace _20210730_BattleShipOOP
             {
                 for (int j = 0; j < ship.SizeHeigh; j++)
                 {
-                    if (ship[i, j].x != -1 && ship[i, j].x != 10
-                            && ship[i, j].y != -1 && ship[i, j].y != 10
-                                && _cells[ship[i, j].x, ship[i, j].y] is EmptyCell)
+                    if (_cells.ContainsKey(ship[i, j]))
                     {
-                        _cells[ship[i, j].x, ship[i, j].y] =
-                            new MissCell(ship[i, j].x, ship[i, j].y);
+                        _cells[ship[i, j]] = new MissCell(ship[i, j].x, ship[i, j].y);
                     }
                 }
             }

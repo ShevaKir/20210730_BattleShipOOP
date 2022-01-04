@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _20210730_BattleShipOOP
 {
-    class HitCell : Cell
+    class HitCell : Cell, IView
     {
         public HitCell(int x, int y)
             :base(x, y)
@@ -20,6 +20,8 @@ namespace _20210730_BattleShipOOP
                 return _coordinate1;
             }
         }
+
+        public GameObject ViewGameObject => GameObject.HitCell;
 
         public override string ToString()
         {
