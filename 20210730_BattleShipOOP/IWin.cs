@@ -8,7 +8,7 @@ namespace _20210730_BattleShipOOP
 {
     interface IWin
     {
-        string Win { get; set }
+        string Win { get;}
 
     }
 }
